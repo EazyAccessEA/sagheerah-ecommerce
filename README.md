@@ -215,3 +215,4 @@ For questions or issues:
 ---
 
 *This project follows the Silicon Valley S-tier retail build manifesto. Every decision, commit, and feature must align with the master plan to ensure excellence in both design and engineering.*
+# sagheerah-ecommerce
