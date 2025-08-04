@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged to format and lint staged files
+npx lint-staged
+
+# Run TypeScript type checking
+npx tsc --noEmit
+
+# Run ESLint on staged files
+npx eslint --fix $(git diff --cached --name-only --diff-filter=ACM | grep -E "\.(js|jsx|ts|tsx)$" | tr '\n' ' ')
+
+# Check for ClarityOS™ compliance in UI components
+echo "🔍 Checking ClarityOS™ compliance..."
+# This would be a custom script to check for design doctrine compliance
+# For now, we'll add a reminder
+echo "✅ Pre-commit checks passed"
+echo "📋 Remember to verify ClarityOS™ compliance in UI changes"

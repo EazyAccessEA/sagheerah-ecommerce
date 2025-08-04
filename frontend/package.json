@@ -6,7 +6,18 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "commit": "git-cz",
+    "clarityos:check": "echo '🔍 ClarityOS™ compliance check - verify design doctrine alignment'",
+    "pre-commit": "lint-staged && npm run type-check",
+    "test": "echo 'Tests not configured yet'",
+    "test:watch": "echo 'Tests not configured yet'",
+    "test:coverage": "echo 'Tests not configured yet'"
   },
   "dependencies": {
     "@medusajs/medusa-js": "^6.1.10",
@@ -20,6 +31,8 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
@@ -27,6 +40,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
