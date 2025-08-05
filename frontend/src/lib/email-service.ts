@@ -20,7 +20,7 @@ export async function sendWelcomeEmail(subscriberEmail: string) {
     const { data, error } = await resend.emails.send({
       from: 'Sagheerah <hello@sagheerah.com>',
       to: [subscriberEmail],
-      subject: '🎉 Welcome to Sagheerah - You\'re Successfully Added!',
+      subject: 'Welcome to Sagheerah - You\'re Successfully Added to Our Waitlist',
       html: `
         <!DOCTYPE html>
         <html>
@@ -187,7 +187,7 @@ export async function sendWelcomeEmail(subscriberEmail: string) {
               
               <div class="section">
                 <h3>Stay Connected</h3>
-                <p>Follow our journey as we prepare to launch the future of modest luxury fashion.</p>
+                <p>Follow our journey as we prepare to launch the future of modest luxury fashion. You'll receive exclusive updates, behind-the-scenes content, and early access to our collection.</p>
               </div>
             </div>
             
@@ -233,7 +233,7 @@ export async function sendAdminNotification(subscription: EmailSubscription) {
     const { data, error } = await resend.emails.send({
       from: 'Sagheerah <hello@sagheerah.com>',
       to: ['admin@sagheerah.com'], // Replace with your admin email
-      subject: '📧 New Sagheerah Waitlist Signup',
+      subject: 'New Sagheerah Waitlist Signup - Admin Notification',
       html: `
         <!DOCTYPE html>
         <html>
@@ -435,7 +435,7 @@ export async function sendUnsubscribeConfirmation(email: string) {
     const { data, error } = await resend.emails.send({
       from: 'Sagheerah <hello@sagheerah.com>',
       to: [email],
-      subject: 'You\'ve Been Unsubscribed from Sagheerah',
+      subject: 'Unsubscribe Confirmation - Sagheerah',
       html: `
         <!DOCTYPE html>
         <html>
@@ -569,6 +569,7 @@ export async function sendUnsubscribeConfirmation(email: string) {
               
               <div class="resubscribe">
                 <a href="mailto:hello@sagheerah.com?subject=RESUBSCRIBE">Resubscribe to Sagheerah</a>
+                <p style="margin-top: 10px; font-size: 14px; color: #666;">Simply reply to this email with "RESUBSCRIBE" to rejoin our waitlist.</p>
               </div>
             </div>
             
