@@ -29,58 +29,179 @@ export async function sendWelcomeEmail(subscriberEmail: string) {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Welcome to Sagheerah</title>
           <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { text-align: center; margin-bottom: 30px; }
-            .content { background: #f9f9f9; padding: 30px; border-radius: 8px; }
-            .highlight { background: #e8f5e8; padding: 15px; border-radius: 5px; margin: 20px 0; }
-            .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #666; }
-            .button { display: inline-block; padding: 12px 24px; background: #000; color: #fff; text-decoration: none; border-radius: 5px; }
+            body { 
+              font-family: 'Georgia', 'Times New Roman', serif; 
+              line-height: 1.8; 
+              color: #1a1a1a; 
+              background: #fafafa;
+              margin: 0;
+              padding: 0;
+            }
+            .container { 
+              max-width: 600px; 
+              margin: 0 auto; 
+              background: #ffffff;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            }
+            .header { 
+              text-align: center; 
+              padding: 40px 30px 30px;
+              background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+              color: #ffffff;
+            }
+            .header h1 { 
+              font-size: 28px; 
+              font-weight: 300; 
+              letter-spacing: 2px;
+              margin: 0;
+              text-transform: uppercase;
+            }
+            .content { 
+              padding: 40px 30px; 
+              background: #ffffff;
+            }
+            .confirmation {
+              text-align: center;
+              margin-bottom: 40px;
+              padding: 30px;
+              background: #f8f8f8;
+              border-left: 4px solid #1a1a1a;
+            }
+            .confirmation h2 {
+              font-size: 24px;
+              font-weight: 400;
+              margin: 0 0 15px 0;
+              color: #1a1a1a;
+            }
+            .confirmation p {
+              font-size: 16px;
+              margin: 0;
+              color: #4a4a4a;
+            }
+            .section {
+              margin-bottom: 35px;
+            }
+            .section h3 {
+              font-size: 18px;
+              font-weight: 600;
+              margin: 0 0 15px 0;
+              color: #1a1a1a;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
+            .section p, .section li {
+              font-size: 16px;
+              color: #4a4a4a;
+              margin: 0 0 10px 0;
+            }
+            .section ul {
+              margin: 15px 0;
+              padding-left: 20px;
+            }
+            .section li {
+              margin-bottom: 8px;
+            }
+            .timeline {
+              background: #f8f8f8;
+              padding: 25px;
+              border-radius: 4px;
+              margin: 20px 0;
+            }
+            .timeline h3 {
+              color: #1a1a1a;
+              margin-bottom: 15px;
+            }
+            .timeline p {
+              font-size: 18px;
+              font-weight: 500;
+              color: #2d2d2d;
+              margin: 0;
+            }
+            .footer { 
+              text-align: center; 
+              padding: 30px;
+              background: #1a1a1a;
+              color: #ffffff;
+              font-size: 14px;
+            }
+            .footer p {
+              margin: 5px 0;
+              color: #cccccc;
+            }
+            .footer hr {
+              border: none;
+              border-top: 1px solid #333;
+              margin: 20px 0;
+            }
+            .social-links {
+              margin: 20px 0;
+            }
+            .social-links a {
+              color: #ffffff;
+              text-decoration: none;
+              margin: 0 15px;
+              font-size: 14px;
+            }
+            .social-links a:hover {
+              text-decoration: underline;
+            }
           </style>
         </head>
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="color: #2d5a2d;">🎉 Welcome to Sagheerah</h1>
+              <h1>Sagheerah</h1>
+              <p style="margin: 10px 0 0 0; font-size: 14px; opacity: 0.8;">Dignity is Her Design</p>
             </div>
             
             <div class="content">
-              <h2>✅ CONFIRMATION</h2>
-              <p>You have been successfully added to the Sagheerah waitlist.</p>
+              <div class="confirmation">
+                <h2>Welcome to Sagheerah</h2>
+                <p>You have been successfully added to our exclusive waitlist.</p>
+              </div>
               
-              <div class="highlight">
-                <h3>🎯 WHAT HAPPENS NEXT</h3>
+              <div class="section">
+                <h3>What Happens Next</h3>
                 <ul>
-                  <li>You'll receive exclusive early access when we launch</li>
-                  <li>Be the first to see our luxury modest fashion collection</li>
-                  <li>Get special pricing and limited edition pieces</li>
+                  <li>Exclusive early access to our launch collection</li>
+                  <li>Priority access to limited edition pieces</li>
+                  <li>Special pricing for waitlist members</li>
+                  <li>Behind-the-scenes updates on our journey</li>
                 </ul>
               </div>
               
-              <h3>📅 TIMELINE</h3>
-              <p>Launch expected in Q1 2025</p>
+              <div class="timeline">
+                <h3>Launch Timeline</h3>
+                <p>Coming Soon • Q4 2025</p>
+              </div>
               
-              <h3>🏷️ COLLECTION</h3>
-              <p>Timeless jilbābs, khimārs, and niqābs</p>
+              <div class="section">
+                <h3>Our Collection</h3>
+                <p>Timeless jilbābs, khimārs, and niqābs crafted with reverence and intention. Each piece is designed for the woman who understands that true modesty is a profound form of strength.</p>
+              </div>
               
-              <h3>💎 POSITIONING</h3>
-              <p>Luxury modest fashion without compromise</p>
+              <div class="section">
+                <h3>Our Promise</h3>
+                <p>Rooted in reverence, refined by design. We believe that ḥayāʾ (modesty) is not a restriction, but a celebration of dignity and grace. Our pieces honor this legacy while embracing contemporary elegance.</p>
+              </div>
               
-              <h3>🎨 OUR PROMISE</h3>
-              <p>Rooted in reverence, refined by design. We craft timeless pieces that celebrate elegance and dignity.</p>
-              
-              <h3>📱 STAY CONNECTED</h3>
-              <ul>
-                <li>Follow us on Instagram: @sagheerah</li>
-                <li>Visit our website: sagheerah.com</li>
-              </ul>
+              <div class="section">
+                <h3>Stay Connected</h3>
+                <p>Follow our journey as we prepare to launch the future of modest luxury fashion.</p>
+              </div>
             </div>
             
             <div class="footer">
-              <p>Best regards,<br>The Sagheerah Team</p>
+              <p>Best regards,</p>
+              <p>The Sagheerah Team</p>
               <hr>
-              <p>🔄 UNSUBSCRIBE: Reply to this email with "UNSUBSCRIBE"<br>
-              📧 CONTACT: hello@sagheerah.com</p>
+              <div class="social-links">
+                <a href="mailto:hello@sagheerah.com">Contact Us</a>
+                <a href="mailto:hello@sagheerah.com?subject=UNSUBSCRIBE">Unsubscribe</a>
+              </div>
+              <p style="margin-top: 20px; font-size: 12px; opacity: 0.7;">
+                Sagheerah • Luxury Modest Fashion House
+              </p>
             </div>
           </div>
         </body>
@@ -119,28 +240,139 @@ export async function sendAdminNotification(subscription: EmailSubscription) {
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>New Subscription</title>
+          <title>New Sagheerah Subscription</title>
           <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { text-align: center; margin-bottom: 30px; }
-            .content { background: #f9f9f9; padding: 30px; border-radius: 8px; }
-            .highlight { background: #e8f5e8; padding: 15px; border-radius: 5px; margin: 20px 0; }
-            .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #666; }
+            body { 
+              font-family: 'Georgia', 'Times New Roman', serif; 
+              line-height: 1.8; 
+              color: #1a1a1a; 
+              background: #fafafa;
+              margin: 0;
+              padding: 0;
+            }
+            .container { 
+              max-width: 600px; 
+              margin: 0 auto; 
+              background: #ffffff;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            }
+            .header { 
+              text-align: center; 
+              padding: 40px 30px 30px;
+              background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+              color: #ffffff;
+            }
+            .header h1 { 
+              font-size: 28px; 
+              font-weight: 300; 
+              letter-spacing: 2px;
+              margin: 0;
+              text-transform: uppercase;
+            }
+            .content { 
+              padding: 40px 30px; 
+              background: #ffffff;
+            }
+            .notification {
+              text-align: center;
+              margin-bottom: 40px;
+              padding: 30px;
+              background: #f8f8f8;
+              border-left: 4px solid #1a1a1a;
+            }
+            .notification h2 {
+              font-size: 24px;
+              font-weight: 400;
+              margin: 0 0 15px 0;
+              color: #1a1a1a;
+            }
+            .notification p {
+              font-size: 16px;
+              margin: 0;
+              color: #4a4a4a;
+            }
+            .section {
+              margin-bottom: 35px;
+            }
+            .section h3 {
+              font-size: 18px;
+              font-weight: 600;
+              margin: 0 0 15px 0;
+              color: #1a1a1a;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
+            .section p, .section li {
+              font-size: 16px;
+              color: #4a4a4a;
+              margin: 0 0 10px 0;
+            }
+            .section ul {
+              margin: 15px 0;
+              padding-left: 20px;
+            }
+            .section li {
+              margin-bottom: 8px;
+            }
+            .details {
+              background: #f8f8f8;
+              padding: 25px;
+              border-radius: 4px;
+              margin: 20px 0;
+            }
+            .details h3 {
+              color: #1a1a1a;
+              margin-bottom: 15px;
+            }
+            .details ul {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+            .details li {
+              padding: 8px 0;
+              border-bottom: 1px solid #e0e0e0;
+            }
+            .details li:last-child {
+              border-bottom: none;
+            }
+            .details strong {
+              color: #1a1a1a;
+              font-weight: 600;
+            }
+            .footer { 
+              text-align: center; 
+              padding: 30px;
+              background: #1a1a1a;
+              color: #ffffff;
+              font-size: 14px;
+            }
+            .footer p {
+              margin: 5px 0;
+              color: #cccccc;
+            }
+            .footer hr {
+              border: none;
+              border-top: 1px solid #333;
+              margin: 20px 0;
+            }
           </style>
         </head>
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="color: #2d5a2d;">📧 New Sagheerah Subscription</h1>
+              <h1>Sagheerah</h1>
+              <p style="margin: 10px 0 0 0; font-size: 14px; opacity: 0.8;">New Subscription Alert</p>
             </div>
             
             <div class="content">
-              <h2>✅ NEW SIGNUP</h2>
-              <p>A new subscriber has joined the Sagheerah waitlist.</p>
+              <div class="notification">
+                <h2>New Waitlist Signup</h2>
+                <p>A new subscriber has joined the Sagheerah waitlist.</p>
+              </div>
               
-              <div class="highlight">
-                <h3>📋 SUBSCRIPTION DETAILS</h3>
+              <div class="details">
+                <h3>Subscription Details</h3>
                 <ul>
                   <li><strong>Email:</strong> ${subscription.email}</li>
                   <li><strong>Date:</strong> ${new Date(subscription.date).toLocaleString()}</li>
@@ -149,21 +381,29 @@ export async function sendAdminNotification(subscription: EmailSubscription) {
                 </ul>
               </div>
               
-              <h3>📊 STATISTICS</h3>
-              <p>This is a new subscription from the coming soon page.</p>
+              <div class="section">
+                <h3>What Happens Next</h3>
+                <ul>
+                  <li>Welcome email has been sent automatically</li>
+                  <li>Subscriber added to waitlist database</li>
+                  <li>Ready for launch campaign preparation</li>
+                  <li>Available for future marketing communications</li>
+                </ul>
+              </div>
               
-              <h3>🎯 NEXT STEPS</h3>
-              <ul>
-                <li>Welcome email has been sent automatically</li>
-                <li>Subscriber added to waitlist database</li>
-                <li>Ready for launch campaign</li>
-              </ul>
+              <div class="section">
+                <h3>System Status</h3>
+                <p>All systems are functioning correctly. The subscriber will receive a professional welcome email with our brand messaging and timeline information.</p>
+              </div>
             </div>
             
             <div class="footer">
-              <p>Best regards,<br>Sagheerah System</p>
+              <p>Best regards,</p>
+              <p>Sagheerah System</p>
               <hr>
-              <p>📧 CONTACT: hello@sagheerah.com</p>
+              <p style="margin-top: 20px; font-size: 12px; opacity: 0.7;">
+                Sagheerah • Luxury Modest Fashion House
+              </p>
             </div>
           </div>
         </body>
