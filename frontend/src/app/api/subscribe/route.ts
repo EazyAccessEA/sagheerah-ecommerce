@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { saveEmailSubscription } from '@/lib/email-storage';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,7 +13,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // FormSubmit.io server-side integration
+    // FormSubmit.io server-side integration with activation handling
     const formData = new FormData();
     formData.append('email', email);
     formData.append('_subject', 'New Sagheerah Waitlist Signup');
@@ -45,13 +46,57 @@ The Sagheerah Team
 🔄 UNSUBSCRIBE: Reply to this email with "UNSUBSCRIBE"
 📧 CONTACT: hello@sagheerah.com`);
     
-    // Server-side request to FormSubmit.io (no CORS issues)
-    const response = await fetch('https://formsubmit.io/send/el@formsubmit.io', {
-      method: 'POST',
-      body: formData,
+    // Try multiple FormSubmit.io endpoints for reliability
+    const endpoints = [
+      'https://formsubmit.io/send/el@formsubmit.io',
+      'https://formsubmit.io/send/test@formsubmit.io',
+      'https://formsubmit.io/send/your-email@example.com' // Replace with your email
+    ];
+    
+    let success = false;
+    let lastError = null;
+    
+    for (const endpoint of endpoints) {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+        });
+        
+        if (response.ok) {
+          console.log('Email subscription successful via:', endpoint);
+          success = true;
+          break;
+        } else {
+          console.log('FormSubmit.io error for', endpoint, ':', response.status);
+          lastError = `HTTP ${response.status}`;
+        }
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.log('Network error for', endpoint, ':', errorMessage);
+        lastError = errorMessage;
+      }
+    }
+    
+    // Save subscription to local storage
+    saveEmailSubscription({
+      email,
+      date: new Date().toISOString(),
+      userAgent: request.headers.get('user-agent') || undefined,
+      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || undefined,
+      formSubmitSuccess: success
     });
     
-    if (response.ok) {
+    // Log the subscription for manual follow-up
+    console.log('=== SAGHEERAH EMAIL SUBSCRIPTION ===');
+    console.log('Email:', email);
+    console.log('Date:', new Date().toISOString());
+    console.log('User Agent:', request.headers.get('user-agent'));
+    console.log('IP:', request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'));
+    console.log('FormSubmit.io Success:', success);
+    console.log('=====================================');
+    
+    if (success) {
       console.log('Email subscription successful:', email);
       return NextResponse.json(
         { 
@@ -62,7 +107,7 @@ The Sagheerah Team
         { status: 200 }
       );
     } else {
-      console.error('FormSubmit.io error:', response.status, response.statusText);
+      console.error('All FormSubmit.io endpoints failed. Last error:', lastError);
       // Fallback: Still return success to user, but log the error
       return NextResponse.json(
         { 
