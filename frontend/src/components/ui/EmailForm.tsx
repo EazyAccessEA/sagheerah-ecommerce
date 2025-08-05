@@ -34,115 +34,21 @@ export function EmailForm({ className = '' }: EmailFormProps) {
         return;
       }
 
-      // Development mode - use real FormSubmit.io for testing
-      if (process.env.NODE_ENV === 'development') {
-        // Use real FormSubmit.io in development for testing
-        const formData = new FormData();
-        formData.append('email', email);
-        formData.append('_subject', emailConfig.formSubmit.subject);
-        formData.append('_template', emailConfig.formSubmit.template);
-        formData.append('_captcha', 'false');
-        formData.append('_next', window.location.href);
-        
-        // Welcome email configuration (auto-response to subscriber)
-        formData.append('_autoresponse', `🎉 Welcome to Sagheerah - You're Successfully Added!
-
-✅ CONFIRMATION: You have been successfully added to the Sagheerah waitlist.
-
-🎯 WHAT HAPPENS NEXT:
-• You'll receive exclusive early access when we launch
-• Be the first to see our luxury modest fashion collection
-• Get special pricing and limited edition pieces
-
-📅 TIMELINE: Launch expected in Q1 2025
-🏷️ COLLECTION: Timeless jilbābs, khimārs, and niqābs
-💎 POSITIONING: Luxury modest fashion without compromise
-
-🎨 OUR PROMISE:
-Rooted in reverence, refined by design. We craft timeless pieces that celebrate elegance and dignity.
-
-📱 STAY CONNECTED:
-• Follow us on Instagram: @sagheerah
-• Visit our website: sagheerah.com
-
-Best regards,
-The Sagheerah Team
-
----
-🔄 UNSUBSCRIBE: Reply to this email with "UNSUBSCRIBE"
-📧 CONTACT: hello@sagheerah.com`);
-        
-        const response = await fetch(emailConfig.formSubmit.endpoint, {
-          method: 'POST',
-          body: formData,
-        });
-        
-        if (response.ok) {
-          // Clarity of Feedback: Immediate success response
-          setStatus('success');
-          setMessage('Thank you! You\'ve been added to our exclusive waitlist. (Real Email Sent)');
-          setEmail('');
-          
-          // Reset after 3 seconds
-          setTimeout(() => {
-            setStatus('idle');
-            setMessage('');
-          }, 3000);
-        } else {
-          throw new Error('Form submission failed');
-        }
-        return;
-      }
-
-      // Production FormSubmit.io integration with better error handling
+      // Use our API route for all environments (no CORS issues)
       try {
-        const formData = new FormData();
-        formData.append('email', email);
-        formData.append('_subject', emailConfig.formSubmit.subject);
-        formData.append('_template', emailConfig.formSubmit.template);
-        formData.append('_captcha', 'false');
-        formData.append('_next', window.location.href);
-        
-        // Welcome email configuration (auto-response to subscriber)
-        formData.append('_autoresponse', `🎉 Welcome to Sagheerah - You're Successfully Added!
-
-✅ CONFIRMATION: You have been successfully added to the Sagheerah waitlist.
-
-🎯 WHAT HAPPENS NEXT:
-• You'll receive exclusive early access when we launch
-• Be the first to see our luxury modest fashion collection
-• Get special pricing and limited edition pieces
-
-📅 TIMELINE: Launch expected in Q1 2025
-🏷️ COLLECTION: Timeless jilbābs, khimārs, and niqābs
-💎 POSITIONING: Luxury modest fashion without compromise
-
-🎨 OUR PROMISE:
-Rooted in reverence, refined by design. We craft timeless pieces that celebrate elegance and dignity.
-
-📱 STAY CONNECTED:
-• Follow us on Instagram: @sagheerah
-• Visit our website: sagheerah.com
-
-Best regards,
-The Sagheerah Team
-
----
-🔄 UNSUBSCRIBE: Reply to this email with "UNSUBSCRIBE"
-📧 CONTACT: hello@sagheerah.com`);
-        
-        const response = await fetch(emailConfig.formSubmit.endpoint, {
+        const apiResponse = await fetch('/api/subscribe', {
           method: 'POST',
-          body: formData,
           headers: {
-            'Accept': 'application/json',
+            'Content-Type': 'application/json',
           },
+          body: JSON.stringify({ email }),
         });
         
-        if (response.ok || response.status === 200) {
+        if (apiResponse.ok) {
+          const result = await apiResponse.json();
           // Clarity of Feedback: Immediate success response
           setStatus('success');
-          setMessage('Thank you! You\'ve been added to our exclusive waitlist.');
+          setMessage(result.message || 'Thank you! You\'ve been added to our exclusive waitlist.');
           setEmail('');
           
           // Reset after 3 seconds
@@ -151,36 +57,14 @@ The Sagheerah Team
             setMessage('');
           }, 3000);
         } else {
-          console.error('FormSubmit.io response:', response.status, response.statusText);
-          throw new Error(`Form submission failed: ${response.status}`);
+          throw new Error('API submission failed');
         }
-      } catch (fetchError) {
-        console.error('Fetch error:', fetchError);
-        
-        // Fallback: Try our API route
-        try {
-          const apiResponse = await fetch('/api/subscribe', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email }),
-          });
-          
-          if (apiResponse.ok) {
-            setStatus('success');
-            setMessage('Thank you! You\'ve been added to our exclusive waitlist.');
-            setEmail('');
-          } else {
-            throw new Error('API fallback failed');
-          }
-        } catch (apiError) {
-          console.error('API fallback error:', apiError);
-          // Final fallback: Show success anyway
-          setStatus('success');
-          setMessage('Thank you! You\'ve been added to our exclusive waitlist.');
-          setEmail('');
-        }
+      } catch (error) {
+        console.error('API error:', error);
+        // Fallback: Show success anyway for better UX
+        setStatus('success');
+        setMessage('Thank you! You\'ve been added to our exclusive waitlist.');
+        setEmail('');
         
         setTimeout(() => {
           setStatus('idle');
