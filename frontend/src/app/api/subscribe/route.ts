@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { saveEmailSubscription } from '@/lib/email-storage';
+import { sendWelcomeEmail, sendAdminNotification } from '@/lib/email-service';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,69 +14,41 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // FormSubmit.io server-side integration with activation handling
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('_subject', 'New Sagheerah Waitlist Signup');
-    formData.append('_template', 'table');
-    formData.append('_captcha', 'false');
-    formData.append('_autoresponse', `🎉 Welcome to Sagheerah - You're Successfully Added!
-
-✅ CONFIRMATION: You have been successfully added to the Sagheerah waitlist.
-
-🎯 WHAT HAPPENS NEXT:
-• You'll receive exclusive early access when we launch
-• Be the first to see our luxury modest fashion collection
-• Get special pricing and limited edition pieces
-
-📅 TIMELINE: Launch expected in Q1 2025
-🏷️ COLLECTION: Timeless jilbābs, khimārs, and niqābs
-💎 POSITIONING: Luxury modest fashion without compromise
-
-🎨 OUR PROMISE:
-Rooted in reverence, refined by design. We craft timeless pieces that celebrate elegance and dignity.
-
-📱 STAY CONNECTED:
-• Follow us on Instagram: @sagheerah
-• Visit our website: sagheerah.com
-
-Best regards,
-The Sagheerah Team
-
----
-🔄 UNSUBSCRIBE: Reply to this email with "UNSUBSCRIBE"
-📧 CONTACT: hello@sagheerah.com`);
+    // Resend email service integration
+    let emailSuccess = false;
+    let emailError = null;
     
-    // Try multiple FormSubmit.io endpoints for reliability
-    const endpoints = [
-      'https://formsubmit.io/send/el@formsubmit.io',
-      'https://formsubmit.io/send/test@formsubmit.io',
-      'https://formsubmit.io/send/your-email@example.com' // Replace with your email
-    ];
-    
-    let success = false;
-    let lastError = null;
-    
-    for (const endpoint of endpoints) {
-      try {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          body: formData,
-        });
-        
-        if (response.ok) {
-          console.log('Email subscription successful via:', endpoint);
-          success = true;
-          break;
-        } else {
-          console.log('FormSubmit.io error for', endpoint, ':', response.status);
-          lastError = `HTTP ${response.status}`;
-        }
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        console.log('Network error for', endpoint, ':', errorMessage);
-        lastError = errorMessage;
+    try {
+      // Send welcome email to subscriber
+      const welcomeResult = await sendWelcomeEmail(email);
+      if (welcomeResult.success) {
+        console.log('Welcome email sent successfully to:', email);
+        emailSuccess = true;
+      } else {
+        emailError = welcomeResult.error;
+        console.error('Welcome email failed:', emailError);
       }
+    } catch (error) {
+      emailError = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Email service error:', emailError);
+    }
+    
+    // Send admin notification
+    try {
+      const adminResult = await sendAdminNotification({
+        email,
+        date: new Date().toISOString(),
+        userAgent: request.headers.get('user-agent') || undefined,
+        ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || undefined,
+      });
+      
+      if (adminResult.success) {
+        console.log('Admin notification sent successfully');
+      } else {
+        console.error('Admin notification failed:', adminResult.error);
+      }
+    } catch (error) {
+      console.error('Admin notification error:', error);
     }
     
     // Save subscription to local storage
@@ -84,7 +57,7 @@ The Sagheerah Team
       date: new Date().toISOString(),
       userAgent: request.headers.get('user-agent') || undefined,
       ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || undefined,
-      formSubmitSuccess: success
+      formSubmitSuccess: emailSuccess
     });
     
     // Log the subscription for manual follow-up
@@ -93,10 +66,10 @@ The Sagheerah Team
     console.log('Date:', new Date().toISOString());
     console.log('User Agent:', request.headers.get('user-agent'));
     console.log('IP:', request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'));
-    console.log('FormSubmit.io Success:', success);
+    console.log('Resend Email Success:', emailSuccess);
     console.log('=====================================');
     
-    if (success) {
+    if (emailSuccess) {
       console.log('Email subscription successful:', email);
       return NextResponse.json(
         { 
@@ -107,7 +80,7 @@ The Sagheerah Team
         { status: 200 }
       );
     } else {
-      console.error('All FormSubmit.io endpoints failed. Last error:', lastError);
+      console.error('Resend email failed. Error:', emailError);
       // Fallback: Still return success to user, but log the error
       return NextResponse.json(
         { 
