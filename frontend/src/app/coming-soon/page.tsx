@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import { Logo } from '@/components/ui/Logo';
-import { EmailForm } from '@/components/ui/EmailForm';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import Logo from '@/components/ui/Logo';
+import EmailForm from '@/components/ui/EmailForm';
+import AnimatedSection from '@/components/ui/AnimatedSection';
 
 export const metadata: Metadata = {
   title: 'Sagheerah | A New Standard in Modest Luxury Fashion',
