@@ -9,7 +9,8 @@ export default function ContactPage() {
     email: '',
     subject: '',
     message: '',
-    privacy: false
+    privacy: false,
+    website: '' // Honeypot field
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -53,7 +54,8 @@ export default function ContactPage() {
           lastName: formData.lastName,
           email: formData.email,
           subject: formData.subject,
-          message: formData.message
+          message: formData.message,
+          website: formData.website // Include honeypot field
         }),
       });
 
@@ -71,7 +73,8 @@ export default function ContactPage() {
           email: '',
           subject: '',
           message: '',
-          privacy: false
+          privacy: false,
+          website: ''
         });
       } else {
         setSubmitStatus({
@@ -245,6 +248,19 @@ export default function ContactPage() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
                 placeholder="Please describe your inquiry in detail..."
               ></textarea>
+            </div>
+
+            {/* Honeypot field - hidden from users but visible to bots */}
+            <div className="absolute left-[-9999px] opacity-0 pointer-events-none">
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleInputChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
             </div>
 
             <div className="flex items-start space-x-3">
