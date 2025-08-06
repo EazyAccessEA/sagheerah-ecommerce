@@ -93,12 +93,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-light text-primary mb-4">Contact Us</h1>
-          <p className="text-text-secondary text-lg">
+          <h1 className="text-4xl font-light text-[#0F2F2E] mb-4">Contact Us</h1>
+          <p className="text-gray-700 text-lg">
             We&apos;d love to hear from you. Get in touch with our team for any questions or support.
           </p>
         </div>
@@ -108,18 +108,18 @@ export default function ContactPage() {
           {/* Email Contact */}
           <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-[#0F2F2E]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-[#0F2F2E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-primary mb-2">Email Us</h3>
-              <p className="text-text-secondary mb-4">
+              <h3 className="text-xl font-semibold text-[#0F2F2E] mb-2">Email Us</h3>
+              <p className="text-gray-700 mb-4">
                 Send us an email and we&apos;ll get back to you as soon as possible.
               </p>
               <a 
                 href="mailto:hello@sagheerah.com"
-                className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-[#0F2F2E] text-white rounded-lg hover:bg-[#0F2F2E]/90 transition-colors"
               >
                 hello@sagheerah.com
               </a>
@@ -129,16 +129,16 @@ export default function ContactPage() {
           {/* Response Time */}
           <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-[#0F2F2E]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-[#0F2F2E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-primary mb-2">Response Time</h3>
-              <p className="text-text-secondary mb-4">
+              <h3 className="text-xl font-semibold text-[#0F2F2E] mb-2">Response Time</h3>
+              <p className="text-gray-700 mb-4">
                 We typically respond to all inquiries within 24-48 hours during business days.
               </p>
-              <div className="text-sm text-text-muted">
+              <div className="text-sm text-gray-600">
                 <p>Monday - Friday</p>
                 <p>9:00 AM - 6:00 PM EST</p>
               </div>
@@ -148,7 +148,7 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 mb-12">
-          <h2 className="text-2xl font-semibold text-primary mb-6 text-center">Send Us a Message</h2>
+          <h2 className="text-2xl font-semibold text-[#0F2F2E] mb-6 text-center">Send Us a Message</h2>
           
           {/* Status Message */}
           {submitStatus.type && (
@@ -164,7 +164,7 @@ export default function ContactPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="firstName" className="block text-sm font-medium text-[#0F2F2E] mb-2">
                   First Name *
                 </label>
                 <input
@@ -174,13 +174,13 @@ export default function ContactPage() {
                   value={formData.firstName}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0F2F2E]/20 focus:border-[#0F2F2E] transition-colors"
                   placeholder="Your first name"
                 />
               </div>
               
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="lastName" className="block text-sm font-medium text-[#0F2F2E] mb-2">
                   Last Name *
                 </label>
                 <input
@@ -190,14 +190,14 @@ export default function ContactPage() {
                   value={formData.lastName}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0F2F2E]/20 focus:border-[#0F2F2E] transition-colors"
                   placeholder="Your last name"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-[#0F2F2E] mb-2">
                 Email Address *
               </label>
               <input
@@ -207,13 +207,13 @@ export default function ContactPage() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0F2F2E]/20 focus:border-[#0F2F2E] transition-colors"
                 placeholder="your.email@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-primary mb-2">
+              <label htmlFor="subject" className="block text-sm font-medium text-[#0F2F2E] mb-2">
                 Subject *
               </label>
               <select
@@ -222,7 +222,7 @@ export default function ContactPage() {
                 value={formData.subject}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0F2F2E]/20 focus:border-[#0F2F2E] transition-colors"
               >
                 <option value="">Select a subject</option>
                 <option value="general">General Inquiry</option>
@@ -235,7 +235,7 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-[#0F2F2E] mb-2">
                 Message *
               </label>
               <textarea
@@ -245,7 +245,7 @@ export default function ContactPage() {
                 onChange={handleInputChange}
                 rows={6}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0F2F2E]/20 focus:border-[#0F2F2E] transition-colors resize-none"
                 placeholder="Please describe your inquiry in detail..."
               ></textarea>
             </div>
@@ -270,15 +270,15 @@ export default function ContactPage() {
                 name="privacy"
                 checked={formData.privacy}
                 onChange={handleInputChange}
-                className="mt-1 h-4 w-4 text-primary focus:ring-primary/20 border-gray-300 rounded"
+                className="mt-1 h-4 w-4 text-[#0F2F2E] focus:ring-[#0F2F2E]/20 border-gray-300 rounded"
               />
-              <label htmlFor="privacy" className="text-sm text-text-secondary">
+              <label htmlFor="privacy" className="text-sm text-gray-700">
                 I agree to the{' '}
-                <a href="/privacy-policy" className="text-primary hover:underline">
+                <a href="/privacy-policy" className="text-[#0F2F2E] hover:underline">
                   Privacy Policy
                 </a>{' '}
                 and{' '}
-                <a href="/terms-of-service" className="text-primary hover:underline">
+                <a href="/terms-of-service" className="text-[#0F2F2E] hover:underline">
                   Terms of Service
                 </a>
               </label>
@@ -291,7 +291,7 @@ export default function ContactPage() {
                 className={`inline-flex items-center px-8 py-3 rounded-lg font-medium transition-colors ${
                   isSubmitting
                     ? 'bg-gray-400 text-white cursor-not-allowed'
-                    : 'bg-primary text-white hover:bg-primary/90'
+                    : 'bg-[#0F2F2E] text-white hover:bg-[#0F2F2E]/90'
                 }`}
               >
                 {isSubmitting ? (
@@ -312,36 +312,36 @@ export default function ContactPage() {
 
         {/* FAQ Section */}
         <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 mb-12">
-          <h2 className="text-2xl font-semibold text-primary mb-6 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-semibold text-[#0F2F2E] mb-6 text-center">Frequently Asked Questions</h2>
           
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-medium text-primary mb-2">When will Sagheerah launch?</h3>
-              <p className="text-text-secondary">
+              <h3 className="text-lg font-medium text-[#0F2F2E] mb-2">When will Sagheerah launch?</h3>
+              <p className="text-gray-700">
                 We&apos;re planning to launch our luxury modest fashion collection in Q4 2025. Subscribe to our newsletter 
                 to be the first to know when we go live!
               </p>
             </div>
             
             <div>
-              <h3 className="text-lg font-medium text-primary mb-2">How can I stay updated?</h3>
-              <p className="text-text-secondary">
+              <h3 className="text-lg font-medium text-[#0F2F2E] mb-2">How can I stay updated?</h3>
+              <p className="text-gray-700">
                 The best way to stay updated is to subscribe to our newsletter. You&apos;ll receive exclusive updates, 
                 behind-the-scenes content, and early access to our collection.
               </p>
             </div>
             
             <div>
-              <h3 className="text-lg font-medium text-primary mb-2">What makes Sagheerah unique?</h3>
-              <p className="text-text-secondary">
+              <h3 className="text-lg font-medium text-[#0F2F2E] mb-2">What makes Sagheerah unique?</h3>
+              <p className="text-gray-700">
                 Sagheerah combines luxury design with modest fashion principles, creating elegant pieces that celebrate 
                 dignity and sophistication. Our designs are crafted with attention to detail and quality materials.
               </p>
             </div>
             
             <div>
-              <h3 className="text-lg font-medium text-primary mb-2">Do you ship internationally?</h3>
-              <p className="text-text-secondary">
+              <h3 className="text-lg font-medium text-[#0F2F2E] mb-2">Do you ship internationally?</h3>
+              <p className="text-gray-700">
                 Yes! We plan to offer worldwide shipping to bring our luxury modest fashion to customers around the globe. 
                 More details will be available closer to our launch.
               </p>
@@ -353,7 +353,7 @@ export default function ContactPage() {
         <div className="text-center">
           <a 
             href="/coming-soon" 
-            className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-[#0F2F2E] text-white rounded-lg hover:bg-[#0F2F2E]/90 transition-colors"
           >
             ← Back to Home
           </a>
