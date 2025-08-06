@@ -65,37 +65,32 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon_io (3)/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon_io (3)/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon_io (2)/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon_io (2)/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    shortcut: "/favicon_io (3)/favicon.ico",
-    apple: "/favicon_io (3)/apple-touch-icon.png",
+    shortcut: "/favicon_io (2)/favicon.ico",
+    apple: "/favicon_io (2)/apple-touch-icon.png",
     other: [
       {
         rel: "icon",
-        url: "/favicon_io (3)/favicon.ico",
+        url: "/favicon_io (2)/favicon.ico",
         sizes: "any",
       },
       {
         rel: "android-chrome-192x192",
-        url: "/favicon_io (3)/android-chrome-192x192.png",
+        url: "/favicon_io (2)/android-chrome-192x192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
         rel: "android-chrome-512x512",
-        url: "/favicon_io (3)/android-chrome-512x512.png",
+        url: "/favicon_io (2)/android-chrome-512x512.png",
         sizes: "512x512",
         type: "image/png",
       },
-      {
-        rel: "mask-icon",
-        url: "/favicon_io (3)/safari-pinned-tab.svg",
-        color: "#0F2F2E",
-      },
     ],
   },
-  manifest: "/favicon_io (3)/site.webmanifest",
+  manifest: "/favicon_io (2)/site.webmanifest",
   other: {
     "msapplication-TileColor": "#0F2F2E",
     "theme-color": "#0F2F2E",
@@ -103,7 +98,6 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-status-bar-style": "default",
     "apple-mobile-web-app-title": "Sagheerah",
     "application-name": "Sagheerah",
-    "msapplication-config": "/favicon_io (3)/browserconfig.xml",
   },
 };
 
