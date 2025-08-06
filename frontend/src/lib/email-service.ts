@@ -151,11 +151,8 @@ export async function sendWelcomeEmail(subscriberEmail: string) {
           <div class="container">
             <div class="header">
               <div style="text-align: center; margin-bottom: 20px;">
-                <!-- Email-safe logo using HTML/CSS -->
-                <div style="display: inline-block; text-align: center; margin-bottom: 15px;">
-                  <div style="font-family: 'Georgia', 'Times New Roman', serif; font-size: 42px; font-weight: 300; letter-spacing: 4px; color: #ffffff; margin: 0; text-transform: uppercase; line-height: 1.1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">SAGHEERAH</div>
-                  <div style="width: 100px; height: 3px; background: linear-gradient(90deg, #ffffff 0%, #cccccc 100%); margin: 15px auto 0; border-radius: 2px; opacity: 0.9;"></div>
-                </div>
+                <!-- Actual Sagheerah logo image -->
+                <img src="https://frontend-j9fy1kput-abdur-rahman-morris-projects.vercel.app/Sagheerah%20Logo%20%E2%80%94%20%20Rich%20Emerald.jpg" alt="Sagheerah" style="height: 80px; margin: 0 auto 15px; display: block; max-width: 100%;">
                 <p style="margin: 15px 0 0 0; font-size: 14px; opacity: 0.8; font-style: italic;">Dignity is Her Design</p>
               </div>
             </div>
@@ -368,11 +365,8 @@ export async function sendAdminNotification(subscription: EmailSubscription) {
           <div class="container">
             <div class="header">
               <div style="text-align: center; margin-bottom: 20px;">
-                <!-- Email-safe logo using HTML/CSS -->
-                <div style="display: inline-block; text-align: center; margin-bottom: 15px;">
-                  <div style="font-family: 'Georgia', 'Times New Roman', serif; font-size: 42px; font-weight: 300; letter-spacing: 4px; color: #ffffff; margin: 0; text-transform: uppercase; line-height: 1.1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">SAGHEERAH</div>
-                  <div style="width: 100px; height: 3px; background: linear-gradient(90deg, #ffffff 0%, #cccccc 100%); margin: 15px auto 0; border-radius: 2px; opacity: 0.9;"></div>
-                </div>
+                <!-- Actual Sagheerah logo image -->
+                <img src="https://frontend-j9fy1kput-abdur-rahman-morris-projects.vercel.app/Sagheerah%20Logo%20%E2%80%94%20%20Rich%20Emerald.jpg" alt="Sagheerah" style="height: 80px; margin: 0 auto 15px; display: block; max-width: 100%;">
                 <p style="margin: 15px 0 0 0; font-size: 14px; opacity: 0.8; font-style: italic;">New Subscription Alert</p>
               </div>
             </div>
