@@ -18,12 +18,32 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50">
+      {/* Minimal Navigation */}
+      <nav className="bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <a href="/coming-soon" className="text-[#0F2F2E] font-medium hover:underline">
+              ← Back to Home
+            </a>
+            <div className="flex space-x-6 text-sm">
+              <span className="text-gray-400">Privacy Policy</span>
+              <a href="/terms-of-service" className="text-gray-600 hover:text-[#0F2F2E] transition-colors">
+                Terms of Service
+              </a>
+              <a href="/contact" className="text-gray-600 hover:text-[#0F2F2E] transition-colors">
+                Contact
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-light text-primary mb-4">Privacy Policy</h1>
-          <p className="text-text-secondary text-lg">Last updated: August 6, 2025</p>
+          <h1 className="text-4xl font-light text-[#0F2F2E] mb-4">Privacy Policy</h1>
+          <p className="text-gray-700 text-lg">Last updated: August 6, 2025</p>
         </div>
 
         {/* Content */}
@@ -156,23 +176,15 @@ export default function PrivacyPolicyPage() {
               If you have any questions about this Privacy Policy or our data practices, please contact us at:
             </p>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-text-secondary">
-                <strong>Email:</strong> hello@sagheerah.com<br />
+              <p className="text-gray-700">
+                <strong>Email:</strong> Contact us through our contact form<br />
                 <strong>Subject:</strong> Privacy Policy Inquiry
               </p>
             </div>
           </section>
         </div>
 
-        {/* Back to Home */}
-        <div className="text-center mt-12">
-          <a 
-            href="/coming-soon" 
-            className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            ← Back to Home
-          </a>
-        </div>
+
       </div>
     </div>
   );

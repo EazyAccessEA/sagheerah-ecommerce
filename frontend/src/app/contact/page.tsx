@@ -94,6 +94,26 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Minimal Navigation */}
+      <nav className="bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <a href="/coming-soon" className="text-[#0F2F2E] font-medium hover:underline">
+              ← Back to Home
+            </a>
+            <div className="flex space-x-6 text-sm">
+              <a href="/privacy-policy" className="text-gray-600 hover:text-[#0F2F2E] transition-colors">
+                Privacy Policy
+              </a>
+              <a href="/terms-of-service" className="text-gray-600 hover:text-[#0F2F2E] transition-colors">
+                Terms of Service
+              </a>
+              <span className="text-gray-400">Contact</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -117,12 +137,12 @@ export default function ContactPage() {
               <p className="text-gray-700 mb-4">
                 Send us an email and we&apos;ll get back to you as soon as possible.
               </p>
-              <a 
-                href="mailto:hello@sagheerah.com"
+              <button 
+                onClick={() => window.location.href = 'mailto:hello@sagheerah.com'}
                 className="inline-flex items-center px-6 py-3 bg-[#0F2F2E] text-white rounded-lg hover:bg-[#0F2F2E]/90 transition-colors"
               >
-                hello@sagheerah.com
-              </a>
+                Send Email
+              </button>
             </div>
           </div>
 
@@ -349,15 +369,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Back to Home */}
-        <div className="text-center">
-          <a 
-            href="/coming-soon" 
-            className="inline-flex items-center px-6 py-3 bg-[#0F2F2E] text-white rounded-lg hover:bg-[#0F2F2E]/90 transition-colors"
-          >
-            ← Back to Home
-          </a>
-        </div>
+
       </div>
     </div>
   );
