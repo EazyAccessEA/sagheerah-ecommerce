@@ -109,10 +109,10 @@ export default function CookieBanner() {
               </div>
 
               {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
                 <button
                   onClick={handleAcceptAll}
-                  className="flex-1 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  className="flex-1 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium shadow-sm"
                 >
                   Accept All Cookies
                 </button>
@@ -221,12 +221,18 @@ export default function CookieBanner() {
               </div>
 
               {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200">
                 <button
                   onClick={handleSavePreferences}
-                  className="flex-1 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  className="flex-1 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium shadow-sm"
                 >
                   Save Preferences
+                </button>
+                <button
+                  onClick={handleAcceptAll}
+                  className="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium shadow-sm"
+                >
+                  Accept All Cookies
                 </button>
                 <button
                   onClick={() => setShowPreferences(false)}
