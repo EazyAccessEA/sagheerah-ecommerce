@@ -1,6 +1,26 @@
-'use client';
-
+import { Metadata } from 'next';
 import BrandBackground from '@/components/ui/BrandBackground';
+
+export const metadata: Metadata = {
+  title: "Terms of Service - Sagheerah",
+  description: "Read Sagheerah's terms of service to understand the rules and guidelines for using our website and services.",
+  keywords: "terms of service, Sagheerah, user agreement, website terms",
+  openGraph: {
+    title: "Terms of Service - Sagheerah",
+    description: "Read Sagheerah's terms of service to understand the rules and guidelines for using our website and services.",
+    type: "website",
+    url: "https://sagheerah.com/terms-of-service",
+    siteName: "Sagheerah",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms of Service - Sagheerah",
+    description: "Read Sagheerah's terms of service to understand the rules and guidelines for using our website and services.",
+  },
+  alternates: {
+    canonical: "/terms-of-service",
+  },
+};
 
 export default function TermsOfServicePage() {
   return (

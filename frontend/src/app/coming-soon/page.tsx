@@ -1,9 +1,38 @@
-'use client';
-
+import { Metadata } from 'next';
 import Logo from '@/components/ui/Logo';
 import EmailForm from '@/components/ui/EmailForm';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import BrandBackground from '@/components/ui/BrandBackground';
+
+export const metadata: Metadata = {
+  title: "Sagheerah - Your Invitation to Timeless Elegance",
+  description: "Join our exclusive waitlist to be among the first to experience our debut collection of sophisticated modest fashion — crafted for women who value elegance, dignity, and refinement.",
+  keywords: "luxury modest fashion, waitlist, coming soon, Sagheerah, jilbab, khimar, niqab, Islamic fashion",
+  openGraph: {
+    title: "Sagheerah - Your Invitation to Timeless Elegance",
+    description: "Join our exclusive waitlist to be among the first to experience our debut collection of sophisticated modest fashion.",
+    type: "website",
+    url: "https://sagheerah.com",
+    siteName: "Sagheerah",
+    images: [
+      {
+        url: "/Sagheerah-Logo-—-Rich-Emerald.svg",
+        width: 1200,
+        height: 630,
+        alt: "Sagheerah - Luxury Modest Fashion",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sagheerah - Your Invitation to Timeless Elegance",
+    description: "Join our exclusive waitlist to be among the first to experience our debut collection of sophisticated modest fashion.",
+    images: ["/Sagheerah-Logo-—-Rich-Emerald.svg"],
+  },
+  alternates: {
+    canonical: "/coming-soon",
+  },
+};
 
 // JSON-LD Schema Markup for SEO
 const jsonLd = {
