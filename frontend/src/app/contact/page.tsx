@@ -142,13 +142,56 @@ export default function ContactPage() {
               <p className="text-gray-700 mb-4">
                 Send us an email and we&apos;ll get back to you as soon as possible.
               </p>
-              {emailStatus.type && (
+                            {emailStatus.type && (
                 <div className={`mb-4 p-3 rounded-lg text-sm ${
-                  emailStatus.type === 'success' 
-                    ? 'bg-green-50 border border-green-200 text-green-800' 
+                  emailStatus.type === 'success'
+                    ? 'bg-green-50 border border-green-200 text-green-800'
                     : 'bg-red-50 border border-red-200 text-red-800'
                 }`}>
-                  {emailStatus.message}
+                  <span>{emailStatus.message.split('click here to copy:')[0]}</span>
+                  {emailStatus.message.includes('click here to copy:') && (
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText('hello@sagheerah.com').then(() => {
+                          // Show a brief "copied" message
+                          const originalMessage = emailStatus.message;
+                          setEmailStatus({
+                            type: 'success',
+                            message: 'Email copied to clipboard!'
+                          });
+                          setTimeout(() => {
+                            setEmailStatus({
+                              type: originalMessage.includes('successfully') ? 'success' : 'error',
+                              message: originalMessage
+                            });
+                          }, 2000);
+                        }).catch(() => {
+                          // Fallback for older browsers
+                          const textArea = document.createElement('textarea');
+                          textArea.value = 'hello@sagheerah.com';
+                          document.body.appendChild(textArea);
+                          textArea.select();
+                          document.execCommand('copy');
+                          document.body.removeChild(textArea);
+                          
+                          const originalMessage = emailStatus.message;
+                          setEmailStatus({
+                            type: 'success',
+                            message: 'Email copied to clipboard!'
+                          });
+                          setTimeout(() => {
+                            setEmailStatus({
+                              type: originalMessage.includes('successfully') ? 'success' : 'error',
+                              message: originalMessage
+                            });
+                          }, 2000);
+                        });
+                      }}
+                      className="text-blue-600 hover:text-blue-800 underline font-medium ml-1"
+                    >
+                      click here to copy: hello@sagheerah.com
+                    </button>
+                  )}
                 </div>
               )}
               
@@ -158,25 +201,34 @@ export default function ContactPage() {
                     // Clear previous status
                     setEmailStatus({ type: null, message: '' });
                     
-                    // Try to open email client
-                    window.location.href = 'mailto:hello@sagheerah.com';
+                    // Create a temporary link element for better compatibility
+                    const mailtoLink = document.createElement('a');
+                    mailtoLink.href = 'mailto:hello@sagheerah.com?subject=Contact%20Inquiry%20from%20Sagheerah%20Website';
+                    mailtoLink.style.display = 'none';
+                    document.body.appendChild(mailtoLink);
                     
-                    // Show success message
+                    // Trigger the click
+                    mailtoLink.click();
+                    
+                    // Clean up
+                    document.body.removeChild(mailtoLink);
+                    
+                    // Show success message with copy functionality
                     setEmailStatus({
                       type: 'success',
-                      message: 'Email client opened successfully! If it didn\'t open, please copy: hello@sagheerah.com'
+                      message: 'Email client opened! If it didn\'t open, click here to copy: hello@sagheerah.com'
                     });
                     
-                    // Clear message after 5 seconds
+                    // Clear message after 8 seconds
                     setTimeout(() => {
                       setEmailStatus({ type: null, message: '' });
-                    }, 5000);
+                    }, 8000);
                     
                   } catch (error) {
-                    // Show error message with email address
+                    // Show error message with copy functionality
                     setEmailStatus({
                       type: 'error',
-                      message: 'Email client not detected. Please copy this email address: hello@sagheerah.com'
+                      message: 'Email client not detected. Click here to copy: hello@sagheerah.com'
                     });
                   }
                 }}
