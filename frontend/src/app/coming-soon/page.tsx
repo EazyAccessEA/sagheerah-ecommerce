@@ -60,6 +60,14 @@ export default function ComingSoonPage() {
               </div>
             </AnimatedSection>
             
+            {/* Coming Soon Badge */}
+            <AnimatedSection delay={300} direction="up">
+              <div className="inline-flex items-center px-4 py-2 bg-[#0F2F2E] text-white text-sm font-medium rounded-full mb-8">
+                <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+                Coming Soon
+              </div>
+            </AnimatedSection>
+            
             {/* Headline */}
             <AnimatedSection delay={400} direction="up">
               <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-light text-black mb-8 tracking-wide">
@@ -70,7 +78,7 @@ export default function ComingSoonPage() {
             {/* Subheading */}
             <AnimatedSection delay={600} direction="up">
               <p className="font-body text-lg md:text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
-                Experience a private unveiling of sophisticated modest fashion — crafted for women who value elegance, dignity, and refinement.
+                We&apos;re crafting something extraordinary. Join our exclusive waitlist to be among the first to experience our debut collection of sophisticated modest fashion — crafted for women who value elegance, dignity, and refinement.
               </p>
             </AnimatedSection>
             
@@ -177,6 +185,9 @@ export default function ComingSoonPage() {
             <AnimatedSection delay={400} direction="up">
               <p className="font-heading text-lg text-gray-300 mb-6 tracking-wide">
                 Sagheerah — Timeless Modesty, Refined.
+              </p>
+              <p className="text-sm text-gray-400 mb-6">
+                Our debut collection is launching soon. Join the waitlist for early access.
               </p>
             </AnimatedSection>
             
