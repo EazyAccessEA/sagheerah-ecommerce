@@ -13,7 +13,7 @@ export default function BrandBackground({ children, className = '' }: BrandBackg
       {/* Brand Motif Background - PuredgeOS™ Compliant */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Primary Brand Motif - Strategic Placement */}
-        <div className="absolute top-0 right-0 w-96 h-96 opacity-[0.08] transform rotate-12">
+        <div className="absolute top-0 right-0 w-96 h-96 opacity-[0.25] transform rotate-12">
           <Image
             src="/brand-motif.png"
             alt=""
@@ -25,7 +25,7 @@ export default function BrandBackground({ children, className = '' }: BrandBackg
         </div>
         
         {/* Secondary Brand Motif - Complementary Position */}
-        <div className="absolute bottom-0 left-0 w-64 h-64 opacity-[0.06] transform -rotate-6">
+        <div className="absolute bottom-0 left-0 w-64 h-64 opacity-[0.20] transform -rotate-6">
           <Image
             src="/brand-motif.png"
             alt=""
@@ -37,7 +37,7 @@ export default function BrandBackground({ children, className = '' }: BrandBackg
         </div>
         
         {/* Tertiary Brand Motif - Center Accent */}
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 opacity-[0.04] transform -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 opacity-[0.15] transform -translate-x-1/2 -translate-y-1/2">
           <Image
             src="/brand-motif.png"
             alt=""
