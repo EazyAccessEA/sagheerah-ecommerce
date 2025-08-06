@@ -1,31 +1,103 @@
-import { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Contact Us - Sagheerah',
-  description: 'Get in touch with the Sagheerah team. We\'re here to answer your questions and provide support.',
-  keywords: 'contact, support, help, Sagheerah, customer service',
-  openGraph: {
-    title: 'Contact Us - Sagheerah',
-    description: 'Get in touch with the Sagheerah team for questions and support.',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Contact Us - Sagheerah',
-    description: 'Get in touch with the Sagheerah team for questions and support.',
-  },
-};
+import { useState } from 'react';
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    subject: '',
+    message: '',
+    privacy: false
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.privacy) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please agree to the Privacy Policy and Terms of Service.'
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: result.message
+        });
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          subject: '',
+          message: '',
+          privacy: false
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'Failed to send message. Please try again.'
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-light text-primary mb-4">Contact Us</h1>
-                      <p className="text-text-secondary text-lg">
-              We&apos;d love to hear from you. Get in touch with our team for any questions or support.
-            </p>
+          <p className="text-text-secondary text-lg">
+            We&apos;d love to hear from you. Get in touch with our team for any questions or support.
+          </p>
         </div>
 
         {/* Contact Information */}
@@ -75,7 +147,18 @@ export default function ContactPage() {
         <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 mb-12">
           <h2 className="text-2xl font-semibold text-primary mb-6 text-center">Send Us a Message</h2>
           
-          <form className="space-y-6">
+          {/* Status Message */}
+          {submitStatus.type && (
+            <div className={`mb-6 p-4 rounded-lg ${
+              submitStatus.type === 'success' 
+                ? 'bg-green-50 border border-green-200 text-green-800' 
+                : 'bg-red-50 border border-red-200 text-red-800'
+            }`}>
+              {submitStatus.message}
+            </div>
+          )}
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-primary mb-2">
@@ -85,6 +168,8 @@ export default function ContactPage() {
                   type="text"
                   id="firstName"
                   name="firstName"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                   placeholder="Your first name"
@@ -99,6 +184,8 @@ export default function ContactPage() {
                   type="text"
                   id="lastName"
                   name="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                   placeholder="Your last name"
@@ -114,6 +201,8 @@ export default function ContactPage() {
                 type="email"
                 id="email"
                 name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                 placeholder="your.email@example.com"
@@ -127,6 +216,8 @@ export default function ContactPage() {
               <select
                 id="subject"
                 name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
               >
@@ -147,6 +238,8 @@ export default function ContactPage() {
               <textarea
                 id="message"
                 name="message"
+                value={formData.message}
+                onChange={handleInputChange}
                 rows={6}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
@@ -159,7 +252,8 @@ export default function ContactPage() {
                 type="checkbox"
                 id="privacy"
                 name="privacy"
-                required
+                checked={formData.privacy}
+                onChange={handleInputChange}
                 className="mt-1 h-4 w-4 text-primary focus:ring-primary/20 border-gray-300 rounded"
               />
               <label htmlFor="privacy" className="text-sm text-text-secondary">
@@ -177,9 +271,24 @@ export default function ContactPage() {
             <div className="text-center">
               <button
                 type="submit"
-                className="inline-flex items-center px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                disabled={isSubmitting}
+                className={`inline-flex items-center px-8 py-3 rounded-lg font-medium transition-colors ${
+                  isSubmitting
+                    ? 'bg-gray-400 text-white cursor-not-allowed'
+                    : 'bg-primary text-white hover:bg-primary/90'
+                }`}
               >
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  'Send Message'
+                )}
               </button>
             </div>
           </form>
