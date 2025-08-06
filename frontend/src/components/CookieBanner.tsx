@@ -131,11 +131,11 @@ export default function CookieBanner() {
               </div>
 
               {/* Links */}
-              <div className="text-xs text-text-muted text-center pt-2">
+              <div className="text-xs text-text-muted text-center pt-3 border-t border-gray-100">
                 <span>Learn more about our </span>
-                <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>
+                <a href="/privacy-policy" className="text-primary hover:underline font-medium">Privacy Policy</a>
                 <span> and </span>
-                <a href="/terms-of-service" className="text-primary hover:underline">Terms of Service</a>
+                <a href="/terms-of-service" className="text-primary hover:underline font-medium">Terms of Service</a>
               </div>
             </div>
           ) : (
@@ -240,6 +240,14 @@ export default function CookieBanner() {
                 >
                   Cancel
                 </button>
+              </div>
+
+              {/* Links */}
+              <div className="text-xs text-text-muted text-center pt-3 border-t border-gray-100">
+                <span>Learn more about our </span>
+                <a href="/privacy-policy" className="text-primary hover:underline font-medium">Privacy Policy</a>
+                <span> and </span>
+                <a href="/terms-of-service" className="text-primary hover:underline font-medium">Terms of Service</a>
               </div>
             </div>
           )}
