@@ -93,9 +93,6 @@ export default function ComingSoonPage() {
             <AnimatedSection delay={1000} direction="up">
               <div className="max-w-md mx-auto">
                 <EmailForm />
-                <p className="text-xs text-gray-500 mt-3">
-                  Private list. No spam — ever.
-                </p>
               </div>
             </AnimatedSection>
           </div>
