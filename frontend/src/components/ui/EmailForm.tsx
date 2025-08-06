@@ -18,19 +18,19 @@ export function EmailForm({ className = '' }: EmailFormProps) {
     
     // Clarity of Action: Clear what will happen
     setStatus('loading');
-    setMessage('Adding you to our exclusive waitlist...');
+    setMessage('Reserving your place on our private list...');
     
     try {
       // Honeypot validation - if honeypot field is filled, it's likely a bot
       if (honeypot.trim()) {
         // Silently reject without showing error to avoid bot detection
         setStatus('success');
-        setMessage('Thank you! You\'ve been added to our exclusive waitlist.');
+        setMessage('Thank you! You\'re now on our private list. We\'ll notify you first.');
         setEmail('');
         setTimeout(() => {
           setStatus('idle');
           setMessage('');
-        }, 3000);
+        }, 4000);
         return;
       }
 
@@ -48,14 +48,14 @@ export function EmailForm({ className = '' }: EmailFormProps) {
           const result = await apiResponse.json();
           // Clarity of Feedback: Immediate success response
           setStatus('success');
-          setMessage(result.message || 'Thank you! You\'ve been added to our exclusive waitlist.');
+          setMessage('Thank you! You\'re now on our private list. We\'ll notify you first.');
           setEmail('');
           
-          // Reset after 3 seconds
+          // Reset after 4 seconds
           setTimeout(() => {
             setStatus('idle');
             setMessage('');
-          }, 3000);
+          }, 4000);
         } else {
           throw new Error('API submission failed');
         }
@@ -63,24 +63,24 @@ export function EmailForm({ className = '' }: EmailFormProps) {
         console.error('API error:', error);
         // Fallback: Show success anyway for better UX
         setStatus('success');
-        setMessage('Thank you! You\'ve been added to our exclusive waitlist.');
+        setMessage('Thank you! You\'re now on our private list. We\'ll notify you first.');
         setEmail('');
         
         setTimeout(() => {
           setStatus('idle');
           setMessage('');
-        }, 3000);
+        }, 4000);
       }
       
     } catch {
       // Clarity of Feedback: Clear error response
       setStatus('error');
-      setMessage('Something went wrong. Please try again.');
+      setMessage('Please enter a valid email address to join our private list.');
       
       setTimeout(() => {
         setStatus('idle');
         setMessage('');
-      }, 3000);
+      }, 4000);
     }
   };
 
@@ -89,104 +89,193 @@ export function EmailForm({ className = '' }: EmailFormProps) {
   };
 
   return (
-    <div className={`w-full max-w-md mx-auto ${className}`}>
+    <div className={`w-full max-w-lg mx-auto ${className}`} data-email-form id="email-form">
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Clarity of Action: Clear input with purpose */}
-        <div className="relative">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email address"
-            className={`
-              w-full px-4 py-3 border-2 rounded-lg font-body text-lg
-              transition-all duration-200 ease-in-out
-              ${status === 'error' 
-                ? 'border-red-500 bg-red-50 text-red-900' 
-                : status === 'success'
-                ? 'border-green-500 bg-green-50 text-green-900'
-                : 'border-gray-300 focus:border-black bg-white text-black placeholder-gray-600'
-              }
-              ${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}
-            `}
-            disabled={status === 'loading'}
-            required
-          />
-          
-          {/* Honeypot field - hidden from users but visible to bots */}
-          <input
-            type="text"
-            name="website"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
-            className="absolute left-[-9999px] opacity-0 pointer-events-none"
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-          />
-          
-          {/* Clarity of State: Visual validation feedback */}
-          {email && !isValidEmail(email) && status === 'idle' && (
-            <p className="text-red-500 text-sm mt-1 font-body">
-              Please enter a valid email address
-            </p>
-          )}
-        </div>
+        {/* Desktop: Side-by-side layout */}
+        <div className="hidden md:flex space-x-3">
+          <div className="flex-1 relative">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your.email@example.com"
+              className={`
+                w-full px-6 py-4 border-2 rounded-lg font-body text-lg
+                transition-all duration-300 ease-in-out
+                ${status === 'error' 
+                  ? 'border-red-500 bg-red-50 text-red-900' 
+                  : status === 'success'
+                  ? 'border-green-500 bg-green-50 text-green-900'
+                  : 'border-gray-300 focus:border-[#0F2F2E] focus:ring-2 focus:ring-[#0F2F2E]/20 bg-white text-black placeholder-gray-500'
+                }
+                ${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}
+              `}
+              disabled={status === 'loading'}
+              required
+            />
+            
+            {/* Honeypot field - hidden from users but visible to bots */}
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              className="absolute left-[-9999px] opacity-0 pointer-events-none"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+          </div>
 
-        {/* Clarity of Action: Clear call-to-action */}
-        <button
-          type="submit"
-          disabled={status === 'loading' || !isValidEmail(email)}
-                      className={`
-              w-full px-6 py-3 rounded-lg font-body text-lg font-semibold
-              transition-all duration-200 ease-in-out
+          {/* Clarity of Action: Clear call-to-action */}
+          <button
+            type="submit"
+            disabled={status === 'loading' || !isValidEmail(email)}
+            className={`
+              px-8 py-4 rounded-lg font-body text-lg font-medium
+              transition-all duration-300 ease-in-out transform hover:scale-105
               ${status === 'loading'
                 ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                 : status === 'success'
-                ? 'bg-green-600 text-white'
+                ? 'bg-green-600 text-white shadow-lg'
                 : status === 'error'
-                ? 'bg-red-600 text-white'
-                : 'bg-black text-white hover:bg-gray-800 focus:ring-4 focus:ring-black/20'
+                ? 'bg-red-600 text-white shadow-lg'
+                : 'bg-[#0F2F2E] text-white hover:bg-[#0B1C1B] focus:ring-4 focus:ring-[#0F2F2E]/20 shadow-lg'
               }
               disabled:opacity-50 disabled:cursor-not-allowed
             `}
-        >
-          {/* Clarity of State: Loading state */}
-          {status === 'loading' && (
-            <div className="flex items-center justify-center space-x-2">
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              <span>Adding...</span>
-            </div>
-          )}
-          
-          {/* Clarity of State: Success state */}
-          {status === 'success' && (
-            <div className="flex items-center justify-center space-x-2">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-              <span>Added!</span>
-            </div>
-          )}
-          
-          {/* Clarity of State: Error state */}
-          {status === 'error' && (
-            <div className="flex items-center justify-center space-x-2">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              <span>Try Again</span>
-            </div>
-          )}
-          
-          {/* Clarity of Action: Default state */}
-          {status === 'idle' && 'Join the Waitlist'}
-        </button>
+          >
+            {/* Clarity of State: Loading state */}
+            {status === 'loading' && (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Reserving...</span>
+              </div>
+            )}
+            
+            {/* Clarity of State: Success state */}
+            {status === 'success' && (
+              <div className="flex items-center justify-center space-x-2">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>Reserved!</span>
+              </div>
+            )}
+            
+            {/* Clarity of State: Error state */}
+            {status === 'error' && (
+              <div className="flex items-center justify-center space-x-2">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                <span>Try Again</span>
+              </div>
+            )}
+            
+            {/* Clarity of Action: Default state */}
+            {status === 'idle' && 'Reserve My Place'}
+          </button>
+        </div>
+
+        {/* Mobile: Stacked layout */}
+        <div className="md:hidden space-y-4">
+          <div className="relative">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your.email@example.com"
+              className={`
+                w-full px-6 py-4 border-2 rounded-lg font-body text-lg
+                transition-all duration-300 ease-in-out
+                ${status === 'error' 
+                  ? 'border-red-500 bg-red-50 text-red-900' 
+                  : status === 'success'
+                  ? 'border-green-500 bg-green-50 text-green-900'
+                  : 'border-gray-300 focus:border-[#0F2F2E] focus:ring-2 focus:ring-[#0F2F2E]/20 bg-white text-black placeholder-gray-500'
+                }
+                ${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}
+              `}
+              disabled={status === 'loading'}
+              required
+            />
+            
+            {/* Honeypot field - hidden from users but visible to bots */}
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              className="absolute left-[-9999px] opacity-0 pointer-events-none"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+          </div>
+
+          {/* Clarity of Action: Clear call-to-action */}
+          <button
+            type="submit"
+            disabled={status === 'loading' || !isValidEmail(email)}
+            className={`
+              w-full px-8 py-4 rounded-lg font-body text-lg font-medium
+              transition-all duration-300 ease-in-out transform hover:scale-105
+              ${status === 'loading'
+                ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                : status === 'success'
+                ? 'bg-green-600 text-white shadow-lg'
+                : status === 'error'
+                ? 'bg-red-600 text-white shadow-lg'
+                : 'bg-[#0F2F2E] text-white hover:bg-[#0B1C1B] focus:ring-4 focus:ring-[#0F2F2E]/20 shadow-lg'
+              }
+              disabled:opacity-50 disabled:cursor-not-allowed
+            `}
+          >
+            {/* Clarity of State: Loading state */}
+            {status === 'loading' && (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Reserving...</span>
+              </div>
+            )}
+            
+            {/* Clarity of State: Success state */}
+            {status === 'success' && (
+              <div className="flex items-center justify-center space-x-2">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>Reserved!</span>
+              </div>
+            )}
+            
+            {/* Clarity of State: Error state */}
+            {status === 'error' && (
+              <div className="flex items-center justify-center space-x-2">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                <span>Try Again</span>
+              </div>
+            )}
+            
+            {/* Clarity of Action: Default state */}
+            {status === 'idle' && 'Reserve My Place'}
+          </button>
+        </div>
+
+        {/* Clarity of State: Visual validation feedback */}
+        {email && !isValidEmail(email) && status === 'idle' && (
+          <p className="text-red-500 text-sm font-body text-center">
+            Please enter a valid email address
+          </p>
+        )}
 
         {/* Clarity of Feedback: Status messages */}
         {message && (
           <div className={`
-            p-3 rounded-lg text-center font-body
+            p-4 rounded-lg text-center font-body
             ${status === 'success' 
               ? 'bg-green-100 text-green-800 border border-green-200'
               : status === 'error'
@@ -199,8 +288,8 @@ export function EmailForm({ className = '' }: EmailFormProps) {
         )}
 
         {/* Clarity of Information: Privacy assurance */}
-        <p className="text-xs text-gray-600 text-center font-body">
-          We respect your privacy. Unsubscribe at any time. No spam, ever.
+        <p className="text-xs text-gray-500 text-center font-body">
+          Private list. No spam — ever.
         </p>
       </form>
     </div>
