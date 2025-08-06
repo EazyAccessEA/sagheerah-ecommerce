@@ -19,6 +19,11 @@ export default function ContactPage() {
     message: string;
   }>({ type: null, message: '' });
 
+  const [emailStatus, setEmailStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -137,8 +142,44 @@ export default function ContactPage() {
               <p className="text-gray-700 mb-4">
                 Send us an email and we&apos;ll get back to you as soon as possible.
               </p>
+              {emailStatus.type && (
+                <div className={`mb-4 p-3 rounded-lg text-sm ${
+                  emailStatus.type === 'success' 
+                    ? 'bg-green-50 border border-green-200 text-green-800' 
+                    : 'bg-red-50 border border-red-200 text-red-800'
+                }`}>
+                  {emailStatus.message}
+                </div>
+              )}
+              
               <button 
-                onClick={() => window.location.href = 'mailto:hello@sagheerah.com'}
+                onClick={() => {
+                  try {
+                    // Clear previous status
+                    setEmailStatus({ type: null, message: '' });
+                    
+                    // Try to open email client
+                    window.location.href = 'mailto:hello@sagheerah.com';
+                    
+                    // Show success message
+                    setEmailStatus({
+                      type: 'success',
+                      message: 'Email client opened successfully! If it didn\'t open, please copy: hello@sagheerah.com'
+                    });
+                    
+                    // Clear message after 5 seconds
+                    setTimeout(() => {
+                      setEmailStatus({ type: null, message: '' });
+                    }, 5000);
+                    
+                  } catch (error) {
+                    // Show error message with email address
+                    setEmailStatus({
+                      type: 'error',
+                      message: 'Email client not detected. Please copy this email address: hello@sagheerah.com'
+                    });
+                  }
+                }}
                 className="inline-flex items-center px-6 py-3 bg-[#0F2F2E] text-white rounded-lg hover:bg-[#0F2F2E]/90 transition-colors"
               >
                 Send Email
