@@ -113,28 +113,54 @@ export default function ComingSoonPage() {
           </div>
         </section>
         
-        {/* Join Our Community Section */}
+        {/* The Sagheerah Story Section */}
         <section className="py-24 px-4 bg-black">
           <div className="max-w-4xl mx-auto text-center">
             <AnimatedSection delay={200} direction="up">
               <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-white mb-8 tracking-wide">
-                Join Our Community
+                The Sagheerah Story
               </h2>
             </AnimatedSection>
             
             <AnimatedSection delay={400} direction="up">
               <p className="font-body text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-                Be among the first to experience our debut collection. Invitations are limited.
+                Where tradition meets contemporary elegance. Every piece is crafted with intention, 
+                honoring the legacy of ḥayāʾ while embracing modern sophistication.
               </p>
             </AnimatedSection>
             
             <AnimatedSection delay={600} direction="up">
-              <a 
-                href="#email-form"
-                className="inline-flex items-center px-8 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-50 hover:border-2 hover:border-[#D4AF37] transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                Unlock Early Access
-              </a>
+              <div className="grid md:grid-cols-3 gap-8 text-center">
+                <div className="space-y-3">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl text-white">Timeless Design</h3>
+                  <p className="text-gray-400 text-sm">Elegant pieces that transcend trends</p>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl text-white">Crafted with Love</h3>
+                  <p className="text-gray-400 text-sm">Every detail thoughtfully considered</p>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl text-white">Sacred Modesty</h3>
+                  <p className="text-gray-400 text-sm">Honoring ḥayāʾ with dignity</p>
+                </div>
+              </div>
             </AnimatedSection>
           </div>
         </section>
