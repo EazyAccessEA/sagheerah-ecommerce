@@ -1,5 +1,5 @@
 // Email Templates for FormSubmit.io
-// ClarityOS™ Compliance: Clear, professional communication
+// PuredgeOS™ Compliance: Clear, professional communication
 
 export const emailTemplates = {
   // Notification email (sent to admin)

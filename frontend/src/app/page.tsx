@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // Redirect to coming soon page with ClarityOS™ compliance
+  // Redirect to coming soon page with PuredgeOS™ compliance
   // Clear purpose: Direct users to the main brand experience
   // Immediate action: No confusion about where to go
   redirect('/coming-soon');

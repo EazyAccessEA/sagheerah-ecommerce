@@ -1,5 +1,5 @@
 // Email Service Configuration
-// ClarityOS™ Compliance: Centralized configuration for clarity
+// PuredgeOS™ Compliance: Centralized configuration for clarity
 
 export const emailConfig = {
   // FormSubmit.io Configuration
