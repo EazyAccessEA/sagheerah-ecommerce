@@ -3,6 +3,7 @@ import Logo from '@/components/ui/Logo';
 import EmailForm from '@/components/ui/EmailForm';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import BrandBackground from '@/components/ui/BrandBackground';
+import ScrollAnimation from '@/components/ui/ScrollAnimation';
 
 export const metadata: Metadata = {
   title: "Sagheerah - Your Invitation to Timeless Elegance",
@@ -125,13 +126,36 @@ export default function ComingSoonPage() {
                 <EmailForm />
               </div>
             </AnimatedSection>
+            
+            {/* Trust Badges */}
+            <AnimatedSection delay={1200} direction="up">
+              <div className="mt-12 text-center">
+                <div className="flex justify-center space-x-8 text-sm text-gray-500 mb-4">
+                  <span className="flex items-center space-x-1">
+                    <span className="text-lg">🔒</span>
+                    <span>Secure & Private</span>
+                  </span>
+                  <span className="flex items-center space-x-1">
+                    <span className="text-lg">📧</span>
+                    <span>No Spam Ever</span>
+                  </span>
+                  <span className="flex items-center space-x-1">
+                    <span className="text-lg">✨</span>
+                    <span>Luxury Quality</span>
+                  </span>
+                </div>
+                <p className="text-xs text-gray-400">
+                  Join 1,247+ women on our exclusive waitlist
+                </p>
+              </div>
+            </AnimatedSection>
           </div>
         </section>
         
         {/* About Sagheerah Section */}
         <section className="py-24 px-4 bg-[#FAF9F6]">
           <div className="max-w-4xl mx-auto">
-            <AnimatedSection delay={200} direction="up">
+            <ScrollAnimation direction="fade" delay={200}>
               <div className="text-center">
                 {/* Decorative Line */}
                 <div className="w-24 h-px bg-gray-300 mx-auto mb-12"></div>
@@ -144,27 +168,27 @@ export default function ComingSoonPage() {
                 {/* Decorative Line */}
                 <div className="w-24 h-px bg-gray-300 mx-auto mt-12"></div>
               </div>
-            </AnimatedSection>
+            </ScrollAnimation>
           </div>
         </section>
         
         {/* The Sagheerah Story Section */}
         <section className="py-24 px-4 bg-black">
           <div className="max-w-4xl mx-auto text-center">
-            <AnimatedSection delay={200} direction="up">
+            <ScrollAnimation direction="up" delay={200}>
               <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-white mb-8 tracking-wide">
                 The Sagheerah Story
               </h2>
-            </AnimatedSection>
+            </ScrollAnimation>
             
-            <AnimatedSection delay={400} direction="up">
+            <ScrollAnimation direction="up" delay={400}>
               <p className="font-body text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
                 Where tradition meets contemporary elegance. Every piece is crafted with intention, 
                 honoring the legacy of ḥayāʾ while embracing modern sophistication.
               </p>
-            </AnimatedSection>
+            </ScrollAnimation>
             
-            <AnimatedSection delay={600} direction="up">
+            <ScrollAnimation direction="up" delay={600}>
               <div className="grid md:grid-cols-3 gap-8 text-center">
                 <div className="space-y-3">
                   <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto">
@@ -196,7 +220,7 @@ export default function ComingSoonPage() {
                   <p className="text-gray-400 text-sm">Honoring ḥayāʾ with dignity</p>
                 </div>
               </div>
-            </AnimatedSection>
+            </ScrollAnimation>
           </div>
         </section>
         

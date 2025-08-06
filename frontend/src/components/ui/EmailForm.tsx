@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { emailConfig } from '@/lib/email-config';
+import { track } from '@vercel/analytics';
 
 interface EmailFormProps {
   className?: string;
@@ -12,6 +13,8 @@ export function EmailForm({ className = '' }: EmailFormProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [honeypot, setHoneypot] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,6 +54,13 @@ export function EmailForm({ className = '' }: EmailFormProps) {
           setMessage('Thank you! You\'re now on our private list. We\'ll notify you first.');
           setEmail('');
           
+          // Track successful email signup
+          track('email_signup_success', {
+            email: email,
+            source: 'coming_soon_page',
+            timestamp: new Date().toISOString()
+          });
+          
           // Reset after 4 seconds
           setTimeout(() => {
             setStatus('idle');
@@ -77,6 +87,14 @@ export function EmailForm({ className = '' }: EmailFormProps) {
       setStatus('error');
       setMessage('Please enter a valid email address to join our private list.');
       
+      // Track form error
+      track('email_signup_error', {
+        email: email,
+        source: 'coming_soon_page',
+        error: 'form_submission_failed',
+        timestamp: new Date().toISOString()
+      });
+      
       setTimeout(() => {
         setStatus('idle');
         setMessage('');
@@ -101,7 +119,7 @@ export function EmailForm({ className = '' }: EmailFormProps) {
               placeholder="your.email@example.com"
               className={`
                 w-full px-6 py-4 border-2 rounded-lg font-body text-lg
-                transition-all duration-300 ease-in-out
+                transition-all duration-300 ease-in-out transform
                 ${status === 'error' 
                   ? 'border-red-500 bg-red-50 text-red-900' 
                   : status === 'success'
@@ -109,9 +127,15 @@ export function EmailForm({ className = '' }: EmailFormProps) {
                   : 'border-gray-300 focus:border-[#0F2F2E] focus:ring-2 focus:ring-[#0F2F2E]/20 bg-white text-black placeholder-gray-500'
                 }
                 ${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}
+                ${isFocused ? 'scale-[1.02] shadow-lg' : ''}
+                ${isHovered ? 'shadow-md' : ''}
               `}
               disabled={status === 'loading'}
               required
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             />
             
             {/* Honeypot field - hidden from users but visible to bots */}
@@ -133,7 +157,7 @@ export function EmailForm({ className = '' }: EmailFormProps) {
             disabled={status === 'loading' || !isValidEmail(email)}
             className={`
               px-8 py-4 rounded-lg font-body text-lg font-medium
-              transition-all duration-300 ease-in-out transform hover:scale-105
+              transition-all duration-300 ease-in-out transform
               ${status === 'loading'
                 ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                 : status === 'success'
@@ -142,8 +166,11 @@ export function EmailForm({ className = '' }: EmailFormProps) {
                 ? 'bg-red-600 text-white shadow-lg'
                 : 'bg-[#0F2F2E] text-white hover:bg-[#0B1C1B] focus:ring-4 focus:ring-[#0F2F2E]/20 shadow-lg'
               }
+              ${!status.includes('loading') && isValidEmail(email) ? 'hover:scale-105 active:scale-95' : ''}
               disabled:opacity-50 disabled:cursor-not-allowed
             `}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             {/* Clarity of State: Loading state */}
             {status === 'loading' && (
@@ -188,7 +215,7 @@ export function EmailForm({ className = '' }: EmailFormProps) {
               placeholder="your.email@example.com"
               className={`
                 w-full px-6 py-4 border-2 rounded-lg font-body text-lg
-                transition-all duration-300 ease-in-out
+                transition-all duration-300 ease-in-out transform
                 ${status === 'error' 
                   ? 'border-red-500 bg-red-50 text-red-900' 
                   : status === 'success'
@@ -196,9 +223,15 @@ export function EmailForm({ className = '' }: EmailFormProps) {
                   : 'border-gray-300 focus:border-[#0F2F2E] focus:ring-2 focus:ring-[#0F2F2E]/20 bg-white text-black placeholder-gray-500'
                 }
                 ${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}
+                ${isFocused ? 'scale-[1.02] shadow-lg' : ''}
+                ${isHovered ? 'shadow-md' : ''}
               `}
               disabled={status === 'loading'}
               required
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             />
             
             {/* Honeypot field - hidden from users but visible to bots */}
@@ -220,7 +253,7 @@ export function EmailForm({ className = '' }: EmailFormProps) {
             disabled={status === 'loading' || !isValidEmail(email)}
             className={`
               w-full px-8 py-4 rounded-lg font-body text-lg font-medium
-              transition-all duration-300 ease-in-out transform hover:scale-105
+              transition-all duration-300 ease-in-out transform
               ${status === 'loading'
                 ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                 : status === 'success'
@@ -229,8 +262,11 @@ export function EmailForm({ className = '' }: EmailFormProps) {
                 ? 'bg-red-600 text-white shadow-lg'
                 : 'bg-[#0F2F2E] text-white hover:bg-[#0B1C1B] focus:ring-4 focus:ring-[#0F2F2E]/20 shadow-lg'
               }
+              ${!status.includes('loading') && isValidEmail(email) ? 'hover:scale-105 active:scale-95' : ''}
               disabled:opacity-50 disabled:cursor-not-allowed
             `}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             {/* Clarity of State: Loading state */}
             {status === 'loading' && (
