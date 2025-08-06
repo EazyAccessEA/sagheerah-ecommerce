@@ -1,24 +1,10 @@
-import { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Terms of Service - Sagheerah',
-  description: 'Read Sagheerah\'s terms of service to understand your rights and obligations when using our website and services.',
-  keywords: 'terms of service, user agreement, legal terms, Sagheerah',
-  openGraph: {
-    title: 'Terms of Service - Sagheerah',
-    description: 'Read Sagheerah\'s terms of service to understand your rights and obligations.',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Terms of Service - Sagheerah',
-    description: 'Read Sagheerah\'s terms of service to understand your rights and obligations.',
-  },
-};
+import BrandBackground from '@/components/ui/BrandBackground';
 
 export default function TermsOfServicePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <BrandBackground className="bg-gray-50">
       {/* Minimal Navigation */}
       <nav className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
@@ -173,6 +159,6 @@ export default function TermsOfServicePage() {
 
 
       </div>
-    </div>
+    </BrandBackground>
   );
 } 

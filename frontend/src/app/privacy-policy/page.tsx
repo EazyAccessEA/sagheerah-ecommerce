@@ -1,24 +1,10 @@
-import { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy - Sagheerah',
-  description: 'Learn how Sagheerah collects, uses, and protects your personal information. Our commitment to your privacy and data security.',
-  keywords: 'privacy policy, data protection, personal information, Sagheerah',
-  openGraph: {
-    title: 'Privacy Policy - Sagheerah',
-    description: 'Learn how Sagheerah collects, uses, and protects your personal information.',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Privacy Policy - Sagheerah',
-    description: 'Learn how Sagheerah collects, uses, and protects your personal information.',
-  },
-};
+import BrandBackground from '@/components/ui/BrandBackground';
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <BrandBackground className="bg-gray-50">
       {/* Minimal Navigation */}
       <nav className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
@@ -186,6 +172,6 @@ export default function PrivacyPolicyPage() {
 
 
       </div>
-    </div>
+    </BrandBackground>
   );
 } 

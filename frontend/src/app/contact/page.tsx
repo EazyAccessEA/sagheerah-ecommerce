@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import BrandBackground from '@/components/ui/BrandBackground';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -98,7 +99,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <BrandBackground className="bg-gray-50">
       {/* Minimal Navigation */}
       <nav className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
@@ -464,6 +465,6 @@ export default function ContactPage() {
 
 
       </div>
-    </div>
+    </BrandBackground>
   );
 } 

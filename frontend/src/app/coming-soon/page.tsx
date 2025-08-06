@@ -3,6 +3,7 @@
 import Logo from '@/components/ui/Logo';
 import EmailForm from '@/components/ui/EmailForm';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import BrandBackground from '@/components/ui/BrandBackground';
 
 // JSON-LD Schema Markup for SEO
 const jsonLd = {
@@ -49,7 +50,7 @@ export default function ComingSoonPage() {
         }}
       />
       
-      <div className="min-h-screen bg-white">
+      <BrandBackground className="bg-white">
         {/* Hero Section - Above the Fold */}
         <section className="min-h-screen flex items-center justify-center px-4 py-20">
           <div className="max-w-5xl mx-auto text-center">
@@ -203,7 +204,7 @@ export default function ComingSoonPage() {
             </AnimatedSection>
           </div>
         </footer>
-      </div>
+      </BrandBackground>
     </>
   );
 } 
