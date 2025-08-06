@@ -1,0 +1,179 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy - Sagheerah',
+  description: 'Learn how Sagheerah collects, uses, and protects your personal information. Our commitment to your privacy and data security.',
+  keywords: 'privacy policy, data protection, personal information, Sagheerah',
+  openGraph: {
+    title: 'Privacy Policy - Sagheerah',
+    description: 'Learn how Sagheerah collects, uses, and protects your personal information.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy - Sagheerah',
+    description: 'Learn how Sagheerah collects, uses, and protects your personal information.',
+  },
+};
+
+export default function PrivacyPolicyPage() {
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-12 max-w-4xl">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-light text-primary mb-4">Privacy Policy</h1>
+          <p className="text-text-secondary text-lg">Last updated: August 6, 2025</p>
+        </div>
+
+        {/* Content */}
+        <div className="prose prose-lg max-w-none">
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Introduction</h2>
+            <p className="text-text-secondary mb-4">
+              At Sagheerah, we are committed to protecting your privacy and ensuring the security of your personal information. 
+              This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website 
+              or interact with our services.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Information We Collect</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-xl font-medium text-primary mb-2">Personal Information</h3>
+                <p className="text-text-secondary">
+                  We may collect personal information that you voluntarily provide to us, such as:
+                </p>
+                <ul className="list-disc list-inside text-text-secondary mt-2 ml-4">
+                  <li>Email address (for newsletter subscriptions)</li>
+                  <li>Name and contact information</li>
+                  <li>Communication preferences</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-medium text-primary mb-2">Automatically Collected Information</h3>
+                <p className="text-text-secondary">
+                  When you visit our website, we may automatically collect certain information, including:
+                </p>
+                <ul className="list-disc list-inside text-text-secondary mt-2 ml-4">
+                  <li>IP address and location data</li>
+                  <li>Browser type and version</li>
+                  <li>Pages visited and time spent</li>
+                  <li>Device information</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">How We Use Your Information</h2>
+            <p className="text-text-secondary mb-4">
+              We use the information we collect to:
+            </p>
+            <ul className="list-disc list-inside text-text-secondary ml-4 space-y-2">
+              <li>Provide and maintain our services</li>
+              <li>Send you updates about our launch and exclusive offers</li>
+              <li>Improve our website and user experience</li>
+              <li>Respond to your inquiries and provide customer support</li>
+              <li>Comply with legal obligations</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Information Sharing</h2>
+            <p className="text-text-secondary mb-4">
+              We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, 
+              except in the following circumstances:
+            </p>
+            <ul className="list-disc list-inside text-text-secondary ml-4 space-y-2">
+              <li>With your explicit consent</li>
+              <li>To comply with legal requirements</li>
+              <li>To protect our rights and safety</li>
+              <li>With trusted service providers who assist in our operations</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Data Security</h2>
+            <p className="text-text-secondary mb-4">
+              We implement appropriate technical and organizational measures to protect your personal information against 
+              unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the 
+              internet is 100% secure, and we cannot guarantee absolute security.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Your Rights</h2>
+            <p className="text-text-secondary mb-4">
+              You have the right to:
+            </p>
+            <ul className="list-disc list-inside text-text-secondary ml-4 space-y-2">
+              <li>Access your personal information</li>
+              <li>Correct inaccurate information</li>
+              <li>Request deletion of your information</li>
+              <li>Opt-out of marketing communications</li>
+              <li>Lodge a complaint with supervisory authorities</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Cookies and Tracking</h2>
+            <p className="text-text-secondary mb-4">
+              We use cookies and similar tracking technologies to enhance your browsing experience and analyze website usage. 
+              You can control cookie settings through your browser preferences.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Third-Party Links</h2>
+            <p className="text-text-secondary mb-4">
+              Our website may contain links to third-party websites. We are not responsible for the privacy practices 
+              or content of these external sites. We encourage you to review their privacy policies.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Children&apos;s Privacy</h2>
+            <p className="text-text-secondary mb-4">
+              Our services are not intended for children under 13 years of age. We do not knowingly collect personal 
+              information from children under 13. If you believe we have collected such information, please contact us.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Changes to This Policy</h2>
+            <p className="text-text-secondary mb-4">
+              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the 
+              new policy on this page and updating the &quot;Last updated&quot; date.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-primary mb-4">Contact Us</h2>
+            <p className="text-text-secondary mb-4">
+              If you have any questions about this Privacy Policy or our data practices, please contact us at:
+            </p>
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-text-secondary">
+                <strong>Email:</strong> hello@sagheerah.com<br />
+                <strong>Subject:</strong> Privacy Policy Inquiry
+              </p>
+            </div>
+          </section>
+        </div>
+
+        {/* Back to Home */}
+        <div className="text-center mt-12">
+          <a 
+            href="/coming-soon" 
+            className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            ← Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+} 

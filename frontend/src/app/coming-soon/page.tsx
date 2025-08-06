@@ -188,13 +188,13 @@ export default function ComingSoonPage() {
               © 2025 Sagheerah. All rights reserved.
             </p>
             <div className="flex justify-center space-x-6 text-sm">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="/privacy-policy" className="text-gray-300 hover:text-white transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="/terms-of-service" className="text-gray-300 hover:text-white transition-colors">
                 Terms of Service
               </a>
-              <a href="mailto:hello@sagheerah.com" className="text-gray-300 hover:text-white transition-colors">
+              <a href="/contact" className="text-gray-300 hover:text-white transition-colors">
                 Contact
               </a>
             </div>
