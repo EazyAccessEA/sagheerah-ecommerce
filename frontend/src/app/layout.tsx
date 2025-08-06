@@ -72,6 +72,11 @@ export const metadata: Metadata = {
     apple: "/favicon_io (3)/apple-touch-icon.png",
     other: [
       {
+        rel: "icon",
+        url: "/favicon_io (3)/favicon.ico",
+        sizes: "any",
+      },
+      {
         rel: "android-chrome-192x192",
         url: "/favicon_io (3)/android-chrome-192x192.png",
         sizes: "192x192",
@@ -83,12 +88,22 @@ export const metadata: Metadata = {
         sizes: "512x512",
         type: "image/png",
       },
+      {
+        rel: "mask-icon",
+        url: "/favicon_io (3)/safari-pinned-tab.svg",
+        color: "#0F2F2E",
+      },
     ],
   },
   manifest: "/favicon_io (3)/site.webmanifest",
   other: {
     "msapplication-TileColor": "#0F2F2E",
     "theme-color": "#0F2F2E",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-title": "Sagheerah",
+    "application-name": "Sagheerah",
+    "msapplication-config": "/favicon_io (3)/browserconfig.xml",
   },
 };
 
