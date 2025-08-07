@@ -4,6 +4,7 @@ import EmailForm from '@/components/ui/EmailForm';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import BrandBackground from '@/components/ui/BrandBackground';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
+import MobileNavigation from '@/components/ui/MobileNavigation';
 
 export const metadata: Metadata = {
   title: "Sagheerah - Your Invitation to Timeless Elegance",
@@ -80,9 +81,12 @@ export default function ComingSoonPage() {
         }}
       />
       
+      {/* Mobile Navigation - Clear purpose and accessibility */}
+      <MobileNavigation />
+      
       <BrandBackground className="bg-white">
         {/* Hero Section - Above the Fold */}
-        <section className="min-h-screen flex items-center justify-center px-4 py-20">
+        <section className="min-h-screen flex items-center justify-center px-4 py-20 md:py-20 pt-20 md:pt-20">
           <div className="max-w-5xl mx-auto text-center">
             {/* Logo */}
             <AnimatedSection delay={200} direction="down">
@@ -127,33 +131,12 @@ export default function ComingSoonPage() {
               </div>
             </AnimatedSection>
             
-            {/* Trust Badges */}
-            <AnimatedSection delay={1200} direction="up">
-              <div className="mt-12 text-center">
-                <div className="flex justify-center space-x-8 text-sm text-gray-500 mb-4">
-                  <span className="flex items-center space-x-1">
-                    <span className="text-lg">🔒</span>
-                    <span>Secure & Private</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <span className="text-lg">📧</span>
-                    <span>No Spam Ever</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <span className="text-lg">✨</span>
-                    <span>Luxury Quality</span>
-                  </span>
-                </div>
-                <p className="text-xs text-gray-400">
-                  Join 1,247+ women on our exclusive waitlist
-                </p>
-              </div>
-            </AnimatedSection>
+
           </div>
         </section>
         
         {/* About Sagheerah Section */}
-        <section className="py-24 px-4 bg-[#FAF9F6]">
+        <section id="about" className="py-24 px-4 bg-[#FAF9F6]">
           <div className="max-w-4xl mx-auto">
             <ScrollAnimation direction="fade" delay={200}>
               <div className="text-center">
@@ -173,7 +156,7 @@ export default function ComingSoonPage() {
         </section>
         
         {/* The Sagheerah Story Section */}
-        <section className="py-24 px-4 bg-black">
+        <section id="story" className="py-24 px-4 bg-black">
           <div className="max-w-4xl mx-auto text-center">
             <ScrollAnimation direction="up" delay={200}>
               <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-white mb-8 tracking-wide">

@@ -95,7 +95,7 @@ export const metadata: Metadata = {
   other: {
     "msapplication-TileColor": "#0F2F2E",
     "theme-color": "#0F2F2E",
-    "apple-mobile-web-app-capable": "yes",
+    "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
     "apple-mobile-web-app-title": "Sagheerah",
     "application-name": "Sagheerah",
